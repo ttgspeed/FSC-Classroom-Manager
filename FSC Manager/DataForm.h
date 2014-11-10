@@ -1,5 +1,12 @@
 #pragma once
 
+#include <pugixml.hpp>
+#include <iostream>
+#include < stdio.h >
+#include < stdlib.h >
+#include < vcclr.h >
+#include "utilities.h"
+
 namespace FSCMAnager {
 
 	using namespace System;
@@ -47,6 +54,7 @@ namespace FSCMAnager {
 	private: System::Windows::Forms::TextBox^  eTimeStart;
 	private: System::Windows::Forms::TextBox^  eTeacher;
 	private: System::Windows::Forms::TextBox^  eClass;
+	private: System::Windows::Forms::Button^  button1;
 
 	private:
 		/// <summary>
@@ -73,6 +81,7 @@ namespace FSCMAnager {
 			this->eTimeStart = (gcnew System::Windows::Forms::TextBox());
 			this->eTeacher = (gcnew System::Windows::Forms::TextBox());
 			this->eClass = (gcnew System::Windows::Forms::TextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// eTimeEndDel
@@ -174,11 +183,22 @@ namespace FSCMAnager {
 			this->eClass->Size = System::Drawing::Size(212, 20);
 			this->eClass->TabIndex = 12;
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(15, 273);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(286, 23);
+			this->button1->TabIndex = 24;
+			this->button1->Text = L"Save Changes";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &DataForm::button1_Click);
+			// 
 			// DataForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(313, 279);
+			this->ClientSize = System::Drawing::Size(313, 303);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->eTimeEndDel);
 			this->Controls->Add(this->eTimeStartDel);
 			this->Controls->Add(this->textBox7);
@@ -193,10 +213,63 @@ namespace FSCMAnager {
 			this->Controls->Add(this->eClass);
 			this->Name = L"DataForm";
 			this->Text = L"Enter Data";
+			this->Load += gcnew System::EventHandler(this, &DataForm::DataForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	};
+	/*private: char* formToChar(String ^data)
+	{
+		String ^str = eClass->Text;
+		pin_ptr<const wchar_t> wch = PtrToStringChars(str);
+		size_t convertedChars = 0;
+		size_t  sizeInBytes = ((str->Length + 1) * 2);
+		errno_t err = 0;
+		char *ch = (char *)malloc(sizeInBytes);
+		err = wcstombs_s(&convertedChars, 
+						ch, sizeInBytes,
+						wch, sizeInBytes);
+		if (err != 0)
+			printf_s("wcstombs_s  failed!\n");
+
+		return ch;
+	}*/
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+		utilities utils;
+
+		pugi::xml_document doc;
+
+		if (!doc.load_file("FSCM1.xml")){
+		pugi::xml_node main = doc.append_child("FSCM");
+
+		// add description node with text child
+		pugi::xml_node mc = main.append_child("Classrooms");
+		pugi::xml_node ch = mc.append_child("classroom");
+		pugi::xml_node cl = ch.append_child("PS100");
+
+		cl.append_child("classcode").text().set(utils.formToChar(eClass->Text));
+		cl.append_child("teacher").text().set(utils.formToChar(eTeacher->Text));
+		cl.append_child("begintime").text().set(utils.formToChar(eTimeStart->Text));
+		cl.append_child("endtime").text().set(utils.formToChar(eTimeEnd->Text));
+
+		//crm.append_child(pugi::node_pcdata).set_value(utils.formToChar(eClass->Text));
+
+		// add param node before the description
+		pugi::xml_node param = main.insert_child_before("param", mc);
+
+		// add attributes to param node
+		param.append_attribute("name") = "version";
+		param.append_attribute("value") = 1.1;
+		param.insert_attribute_after("type", param.attribute("name")) = "float";
+		//]
+
+		std::cout << "Saving result: " << doc.save_file("FSCM.xml") << std::endl;
+		}
+	}
+
+private: System::Void DataForm_Load(System::Object^  sender, System::EventArgs^  e) {
+		 }
+};
 }

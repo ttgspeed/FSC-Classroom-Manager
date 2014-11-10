@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<FSCM>
+	<param name="version" type="float" value="1.1" />
+	<Classrooms>
+		<classroom>
+			<PS100>
+				<classcode>dfgdfg</classcode>
+				<teacher>dfgdfg</teacher>
+				<begintime>dfg</begintime>
+				<endtime>fggfd</endtime>
+			</PS100>
+		</classroom>
+	</Classrooms>
+</FSCM>

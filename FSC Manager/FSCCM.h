@@ -1,5 +1,9 @@
 #pragma once
 
+#include <iostream>
+#include "DataForm.h"
+#include "utilities.h"
+
 namespace FSCMAnager {
 
 	using namespace System;
@@ -43,6 +47,7 @@ namespace FSCMAnager {
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  roomSelect;
 	private: System::Windows::Forms::TextBox^  dateSelect;
+	private: System::Windows::Forms::Button^  changeDataBtn;
 
 
 
@@ -64,9 +69,11 @@ namespace FSCMAnager {
 
 
 
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
+
+
 	private: System::Windows::Forms::ListBox^  listBox1;
+	private: System::Windows::Forms::Button^  newEntryBtn;
+
 
 
 
@@ -86,89 +93,89 @@ namespace FSCMAnager {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::TreeNode^  treeNode18 = (gcnew System::Windows::Forms::TreeNode(L"PS110"));
-			System::Windows::Forms::TreeNode^  treeNode19 = (gcnew System::Windows::Forms::TreeNode(L"PS111"));
-			System::Windows::Forms::TreeNode^  treeNode20 = (gcnew System::Windows::Forms::TreeNode(L"PS112"));
-			System::Windows::Forms::TreeNode^  treeNode21 = (gcnew System::Windows::Forms::TreeNode(L"PS113"));
-			System::Windows::Forms::TreeNode^  treeNode22 = (gcnew System::Windows::Forms::TreeNode(L"PS114"));
-			System::Windows::Forms::TreeNode^  treeNode23 = (gcnew System::Windows::Forms::TreeNode(L"PS115"));
-			System::Windows::Forms::TreeNode^  treeNode24 = (gcnew System::Windows::Forms::TreeNode(L"CLASSROOMS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(6) {treeNode18, 
-				treeNode19, treeNode20, treeNode21, treeNode22, treeNode23}));
-			System::Windows::Forms::TreeNode^  treeNode25 = (gcnew System::Windows::Forms::TreeNode(L"PS115"));
-			System::Windows::Forms::TreeNode^  treeNode26 = (gcnew System::Windows::Forms::TreeNode(L"PS120"));
-			System::Windows::Forms::TreeNode^  treeNode27 = (gcnew System::Windows::Forms::TreeNode(L"BIO LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode25, 
-				treeNode26}));
-			System::Windows::Forms::TreeNode^  treeNode28 = (gcnew System::Windows::Forms::TreeNode(L"PS118"));
-			System::Windows::Forms::TreeNode^  treeNode29 = (gcnew System::Windows::Forms::TreeNode(L"PS119"));
-			System::Windows::Forms::TreeNode^  treeNode30 = (gcnew System::Windows::Forms::TreeNode(L"PHY LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode28, 
-				treeNode29}));
-			System::Windows::Forms::TreeNode^  treeNode31 = (gcnew System::Windows::Forms::TreeNode(L"PS251"));
-			System::Windows::Forms::TreeNode^  treeNode32 = (gcnew System::Windows::Forms::TreeNode(L"PS252"));
-			System::Windows::Forms::TreeNode^  treeNode33 = (gcnew System::Windows::Forms::TreeNode(L"MAT LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode31, 
-				treeNode32}));
-			System::Windows::Forms::TreeNode^  treeNode34 = (gcnew System::Windows::Forms::TreeNode(L"LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(3) {treeNode27, 
-				treeNode30, treeNode33}));
+			System::Windows::Forms::TreeNode^  treeNode1 = (gcnew System::Windows::Forms::TreeNode(L"PS110"));
+			System::Windows::Forms::TreeNode^  treeNode2 = (gcnew System::Windows::Forms::TreeNode(L"PS111"));
+			System::Windows::Forms::TreeNode^  treeNode3 = (gcnew System::Windows::Forms::TreeNode(L"PS112"));
+			System::Windows::Forms::TreeNode^  treeNode4 = (gcnew System::Windows::Forms::TreeNode(L"PS113"));
+			System::Windows::Forms::TreeNode^  treeNode5 = (gcnew System::Windows::Forms::TreeNode(L"PS114"));
+			System::Windows::Forms::TreeNode^  treeNode6 = (gcnew System::Windows::Forms::TreeNode(L"PS115"));
+			System::Windows::Forms::TreeNode^  treeNode7 = (gcnew System::Windows::Forms::TreeNode(L"CLASSROOMS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(6) {treeNode1, 
+				treeNode2, treeNode3, treeNode4, treeNode5, treeNode6}));
+			System::Windows::Forms::TreeNode^  treeNode8 = (gcnew System::Windows::Forms::TreeNode(L"PS115"));
+			System::Windows::Forms::TreeNode^  treeNode9 = (gcnew System::Windows::Forms::TreeNode(L"PS120"));
+			System::Windows::Forms::TreeNode^  treeNode10 = (gcnew System::Windows::Forms::TreeNode(L"BIO LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode8, 
+				treeNode9}));
+			System::Windows::Forms::TreeNode^  treeNode11 = (gcnew System::Windows::Forms::TreeNode(L"PS118"));
+			System::Windows::Forms::TreeNode^  treeNode12 = (gcnew System::Windows::Forms::TreeNode(L"PS119"));
+			System::Windows::Forms::TreeNode^  treeNode13 = (gcnew System::Windows::Forms::TreeNode(L"PHY LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode11, 
+				treeNode12}));
+			System::Windows::Forms::TreeNode^  treeNode14 = (gcnew System::Windows::Forms::TreeNode(L"PS251"));
+			System::Windows::Forms::TreeNode^  treeNode15 = (gcnew System::Windows::Forms::TreeNode(L"PS252"));
+			System::Windows::Forms::TreeNode^  treeNode16 = (gcnew System::Windows::Forms::TreeNode(L"MAT LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode14, 
+				treeNode15}));
+			System::Windows::Forms::TreeNode^  treeNode17 = (gcnew System::Windows::Forms::TreeNode(L"LABS", gcnew cli::array< System::Windows::Forms::TreeNode^  >(3) {treeNode10, 
+				treeNode13, treeNode16}));
 			this->classTree = (gcnew System::Windows::Forms::TreeView());
 			this->monthCalendar1 = (gcnew System::Windows::Forms::MonthCalendar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->roomSelect = (gcnew System::Windows::Forms::TextBox());
 			this->dateSelect = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->changeDataBtn = (gcnew System::Windows::Forms::Button());
 			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->newEntryBtn = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// classTree
 			// 
 			this->classTree->Location = System::Drawing::Point(12, 12);
 			this->classTree->Name = L"classTree";
-			treeNode18->Name = L"Node1";
-			treeNode18->Text = L"PS110";
-			treeNode19->Name = L"Node3";
-			treeNode19->Text = L"PS111";
-			treeNode20->Name = L"Node4";
-			treeNode20->Text = L"PS112";
-			treeNode21->Name = L"Node5";
-			treeNode21->Text = L"PS113";
-			treeNode22->Name = L"Node6";
-			treeNode22->Text = L"PS114";
-			treeNode23->Name = L"Node7";
-			treeNode23->Text = L"PS115";
-			treeNode24->Checked = true;
-			treeNode24->Name = L"Classrooms";
-			treeNode24->Tag = L"";
-			treeNode24->Text = L"CLASSROOMS";
-			treeNode25->Name = L"Node12";
-			treeNode25->Text = L"PS115";
-			treeNode26->Name = L"Node13";
-			treeNode26->Text = L"PS120";
-			treeNode27->Checked = true;
-			treeNode27->Name = L"BioLabs";
-			treeNode27->Tag = L"isRoot";
-			treeNode27->Text = L"BIO LABS";
-			treeNode28->Name = L"Node14";
-			treeNode28->Text = L"PS118";
-			treeNode29->Name = L"Node15";
-			treeNode29->Text = L"PS119";
-			treeNode30->Checked = true;
-			treeNode30->Name = L"PhysLabs";
-			treeNode30->Tag = L"isRoot";
-			treeNode30->Text = L"PHY LABS";
-			treeNode31->Name = L"Node16";
-			treeNode31->Text = L"PS251";
-			treeNode32->Name = L"Node17";
-			treeNode32->Text = L"PS252";
-			treeNode33->Checked = true;
-			treeNode33->Name = L"MatLabs";
-			treeNode33->Tag = L"isRoot";
-			treeNode33->Text = L"MAT LABS";
-			treeNode34->Checked = true;
-			treeNode34->Name = L"Labs";
-			treeNode34->Tag = L"";
-			treeNode34->Text = L"LABS";
-			this->classTree->Nodes->AddRange(gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode24, treeNode34});
-			this->classTree->Size = System::Drawing::Size(148, 267);
+			treeNode1->Name = L"Node1";
+			treeNode1->Text = L"PS110";
+			treeNode2->Name = L"Node3";
+			treeNode2->Text = L"PS111";
+			treeNode3->Name = L"Node4";
+			treeNode3->Text = L"PS112";
+			treeNode4->Name = L"Node5";
+			treeNode4->Text = L"PS113";
+			treeNode5->Name = L"Node6";
+			treeNode5->Text = L"PS114";
+			treeNode6->Name = L"Node7";
+			treeNode6->Text = L"PS115";
+			treeNode7->Checked = true;
+			treeNode7->Name = L"Classrooms";
+			treeNode7->Tag = L"";
+			treeNode7->Text = L"CLASSROOMS";
+			treeNode8->Name = L"Node12";
+			treeNode8->Text = L"PS115";
+			treeNode9->Name = L"Node13";
+			treeNode9->Text = L"PS120";
+			treeNode10->Checked = true;
+			treeNode10->Name = L"BioLabs";
+			treeNode10->Tag = L"isRoot";
+			treeNode10->Text = L"BIO LABS";
+			treeNode11->Name = L"Node14";
+			treeNode11->Text = L"PS118";
+			treeNode12->Name = L"Node15";
+			treeNode12->Text = L"PS119";
+			treeNode13->Checked = true;
+			treeNode13->Name = L"PhysLabs";
+			treeNode13->Tag = L"isRoot";
+			treeNode13->Text = L"PHY LABS";
+			treeNode14->Name = L"Node16";
+			treeNode14->Text = L"PS251";
+			treeNode15->Name = L"Node17";
+			treeNode15->Text = L"PS252";
+			treeNode16->Checked = true;
+			treeNode16->Name = L"MatLabs";
+			treeNode16->Tag = L"isRoot";
+			treeNode16->Text = L"MAT LABS";
+			treeNode17->Checked = true;
+			treeNode17->Name = L"Labs";
+			treeNode17->Tag = L"";
+			treeNode17->Text = L"LABS";
+			this->classTree->Nodes->AddRange(gcnew cli::array< System::Windows::Forms::TreeNode^  >(2) {treeNode7, treeNode17});
+			this->classTree->Size = System::Drawing::Size(148, 226);
 			this->classTree->TabIndex = 0;
 			this->classTree->AfterSelect += gcnew System::Windows::Forms::TreeViewEventHandler(this, &Form1::treeView1_AfterSelect);
 			// 
@@ -213,24 +220,16 @@ namespace FSCMAnager {
 			this->dateSelect->Size = System::Drawing::Size(180, 20);
 			this->dateSelect->TabIndex = 5;
 			// 
-			// button1
+			// changeDataBtn
 			// 
-			this->button1->Location = System::Drawing::Point(175, 256);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(224, 23);
-			this->button1->TabIndex = 7;
-			this->button1->Text = L"Save Changes";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(411, 256);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(152, 23);
-			this->button2->TabIndex = 8;
-			this->button2->Text = L"Change Data";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			this->changeDataBtn->Enabled = false;
+			this->changeDataBtn->Location = System::Drawing::Point(411, 185);
+			this->changeDataBtn->Name = L"changeDataBtn";
+			this->changeDataBtn->Size = System::Drawing::Size(152, 23);
+			this->changeDataBtn->TabIndex = 8;
+			this->changeDataBtn->Text = L"Modify Entry";
+			this->changeDataBtn->UseVisualStyleBackColor = true;
+			this->changeDataBtn->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
 			// listBox1
 			// 
@@ -239,18 +238,29 @@ namespace FSCMAnager {
 				L"MAT 2450 4:45PM-6:00PM", L"MAT 2450 4:45PM-6:00PM"});
 			this->listBox1->Location = System::Drawing::Point(411, 12);
 			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(152, 225);
+			this->listBox1->Size = System::Drawing::Size(152, 160);
 			this->listBox1->TabIndex = 9;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox1_SelectedIndexChanged);
+			// 
+			// newEntryBtn
+			// 
+			this->newEntryBtn->Location = System::Drawing::Point(411, 215);
+			this->newEntryBtn->Name = L"newEntryBtn";
+			this->newEntryBtn->Size = System::Drawing::Size(152, 23);
+			this->newEntryBtn->TabIndex = 10;
+			this->newEntryBtn->Text = L"New Entry";
+			this->newEntryBtn->UseVisualStyleBackColor = true;
+			this->newEntryBtn->Click += gcnew System::EventHandler(this, &Form1::newEntryBtn_Click);
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::White;
-			this->ClientSize = System::Drawing::Size(575, 291);
+			this->ClientSize = System::Drawing::Size(575, 250);
+			this->Controls->Add(this->newEntryBtn);
 			this->Controls->Add(this->listBox1);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->changeDataBtn);
 			this->Controls->Add(this->dateSelect);
 			this->Controls->Add(this->roomSelect);
 			this->Controls->Add(this->label2);
@@ -259,24 +269,24 @@ namespace FSCMAnager {
 			this->Controls->Add(this->classTree);
 			this->Name = L"Form1";
 			this->Text = L"FSC Classroom Manager";
+			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+
 private: System::Void treeView1_AfterSelect(System::Object^  sender, System::Windows::Forms::TreeViewEventArgs^  e) {
 			 //since "checked" nodes are root nodes, if a node is "checked", do not update the text box
 			 if(!e->Node->Checked)
 			 {
 				roomSelect->Text = e->Node->Text;
 				populateForm();
-				//roomSelected = true;
 			 }
 		 }
 private: System::Void monthCalendar1_DateChanged(System::Object^  sender, System::Windows::Forms::DateRangeEventArgs^  e) {
 			 dateSelect->Text = e->End.ToShortDateString();
 			 populateForm();
-			 //dateSelected = true;
 		 }
 
 		 private: void populateForm()
@@ -288,8 +298,30 @@ private: System::Void monthCalendar1_DateChanged(System::Object^  sender, System
 			 }
 		 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-			 //DataForm dataForm = gcnew DataForm;
-			 //datarm->visible = true;
+			 if(listBox1->SelectedItem){
+				String^ curItem = listBox1->SelectedItem->ToString();
+				MessageBox::Show(curItem, "MessageBox Test", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+			 }
+			 else
+			 {
+				 MessageBox::Show("Please select a valid class time", "MessageBox Test", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+			 }
+		 }
+
+		 //form loading
+private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
+			 utilities utils;
+			 utils.initXML();
+
+			 dateSelect->Text = monthCalendar1->TodayDate.ToShortDateString();
+		 }
+
+private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			 changeDataBtn->Enabled = true;
+		 }
+private: System::Void newEntryBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+			 DataForm^ df = gcnew DataForm();
+			 df->Visible = true;
 		 }
 };
 }

@@ -33,6 +33,12 @@
     <ClCompile Include="DataForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="xml\pugixml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -45,6 +51,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FSCCM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\pugiconfig.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\pugixml.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
