@@ -1,6 +1,6 @@
 #pragma once
 
-#include <pugixml.hpp>
+//#include <pugixml.hpp>
 #include <iostream>
 #include < stdio.h >
 #include < stdlib.h >
@@ -15,5 +15,8 @@ public:
 	utilities(void);
 	char* formToChar(String ^data);
 	void initXML();
+
+	static char *selectedClass;
+	static char *selectedDate;
 };
 

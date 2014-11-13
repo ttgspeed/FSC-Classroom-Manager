@@ -3,12 +3,20 @@
 	<param name="version" type="float" value="1.1" />
 	<Classrooms>
 		<classroom>
-			<PS100>
-				<classcode>dfgdfg</classcode>
-				<teacher>dfgdfg</teacher>
-				<begintime>dfg</begintime>
-				<endtime>fggfd</endtime>
-			</PS100>
+			<class classroom="PS110" date="11/13/2014" displayname="CSC3645 2:30-3:30">
+				<classcode>CSC3645</classcode>
+				<teacher>MARTINEZ</teacher>
+				<begintime>2:30</begintime>
+				<endtime>3:30</endtime>
+				<notes />
+			</class>
+			<class classroom="PS111" date="11/12/2014" displayname="MAT4499 1:00-1:15">
+				<classcode>MAT4499</classcode>
+				<teacher>MATHIAS</teacher>
+				<begintime>1:00</begintime>
+				<endtime>1:15</endtime>
+				<notes />
+			</class>
 		</classroom>
 	</Classrooms>
 </FSCM>

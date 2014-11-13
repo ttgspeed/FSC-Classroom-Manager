@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "DataForm.h"
+#include "ModifyData.h"
 #include "utilities.h"
 
 namespace FSCMAnager {
@@ -48,36 +49,8 @@ namespace FSCMAnager {
 	private: System::Windows::Forms::TextBox^  roomSelect;
 	private: System::Windows::Forms::TextBox^  dateSelect;
 	private: System::Windows::Forms::Button^  changeDataBtn;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	private: System::Windows::Forms::ListBox^  listBox1;
+	private: System::Windows::Forms::ListBox^  classList;
 	private: System::Windows::Forms::Button^  newEntryBtn;
-
-
-
-
-
 
 	private:
 		/// <summary>
@@ -122,7 +95,7 @@ namespace FSCMAnager {
 			this->roomSelect = (gcnew System::Windows::Forms::TextBox());
 			this->dateSelect = (gcnew System::Windows::Forms::TextBox());
 			this->changeDataBtn = (gcnew System::Windows::Forms::Button());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->classList = (gcnew System::Windows::Forms::ListBox());
 			this->newEntryBtn = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
@@ -227,20 +200,18 @@ namespace FSCMAnager {
 			this->changeDataBtn->Name = L"changeDataBtn";
 			this->changeDataBtn->Size = System::Drawing::Size(152, 23);
 			this->changeDataBtn->TabIndex = 8;
-			this->changeDataBtn->Text = L"Modify Entry";
+			this->changeDataBtn->Text = L"Remove Entry";
 			this->changeDataBtn->UseVisualStyleBackColor = true;
 			this->changeDataBtn->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
-			// listBox1
+			// classList
 			// 
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) {L"MAT 2450 4:45PM-6:00PM", L"CSC 2033 1:45PM-3:00PM", 
-				L"MAT 2450 4:45PM-6:00PM", L"MAT 2450 4:45PM-6:00PM"});
-			this->listBox1->Location = System::Drawing::Point(411, 12);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(152, 160);
-			this->listBox1->TabIndex = 9;
-			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox1_SelectedIndexChanged);
+			this->classList->FormattingEnabled = true;
+			this->classList->Location = System::Drawing::Point(411, 12);
+			this->classList->Name = L"classList";
+			this->classList->Size = System::Drawing::Size(152, 160);
+			this->classList->TabIndex = 9;
+			this->classList->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox1_SelectedIndexChanged);
 			// 
 			// newEntryBtn
 			// 
@@ -259,7 +230,7 @@ namespace FSCMAnager {
 			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(575, 250);
 			this->Controls->Add(this->newEntryBtn);
-			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->classList);
 			this->Controls->Add(this->changeDataBtn);
 			this->Controls->Add(this->dateSelect);
 			this->Controls->Add(this->roomSelect);
@@ -282,30 +253,69 @@ private: System::Void treeView1_AfterSelect(System::Object^  sender, System::Win
 			 {
 				roomSelect->Text = e->Node->Text;
 				populateForm();
+
+				utilities utils;
+				utils.selectedClass = utils.formToChar(e->Node->Text);
 			 }
 		 }
 private: System::Void monthCalendar1_DateChanged(System::Object^  sender, System::Windows::Forms::DateRangeEventArgs^  e) {
 			 dateSelect->Text = e->End.ToShortDateString();
+
+			 utilities utils;
+			 utils.selectedDate = utils.formToChar(e->End.ToShortDateString());
+
 			 populateForm();
 		 }
 
 		 private: void populateForm()
 		 {
+			 classList->Items->Clear();
+
+			 utilities utils;
 			 if(roomSelect->Text != "" && dateSelect->Text != "")
 			 {
-				 //eClass->Text = "Test";
-				 //eTeacher->Text = "test2";
+				pugi::xml_document doc;
+
+				if (doc.load_file("FSCM.xml")){
+					pugi::xml_node ch = doc.child("FSCM").child("Classrooms").child("classroom");
+
+					for (pugi::xml_node cl = ch.first_child(); cl; cl = cl.next_sibling())
+					{
+						String^ cldn = gcnew String(cl.attribute("displayname").value());
+						String^ clrn = gcnew String(cl.attribute("classroom").value());
+						String^ cldt = gcnew String(cl.attribute("date").value());
+
+						if((clrn == roomSelect->Text) && (cldt == dateSelect->Text))
+							classList->Items->Insert(0, cldn);
+					}
+				}
 			 }
 		 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-			 if(listBox1->SelectedItem){
-				String^ curItem = listBox1->SelectedItem->ToString();
-				MessageBox::Show(curItem, "MessageBox Test", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-			 }
-			 else
+
+			 utilities utils;
+			 if(roomSelect->Text != "" && dateSelect->Text != "")
 			 {
-				 MessageBox::Show("Please select a valid class time", "MessageBox Test", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+				String^ curItem = classList->SelectedItem->ToString();
+
+				pugi::xml_document doc;
+
+				if (doc.load_file("FSCM.xml")){
+					pugi::xml_node ch = doc.child("FSCM").child("Classrooms").child("classroom");
+
+					for (pugi::xml_node cl = ch.first_child(); cl; cl = cl.next_sibling())
+					{
+						String^ cldn = gcnew String(cl.attribute("displayname").value());
+
+						if(cldn == curItem){
+							ch.remove_child(cl);
+							std::cout << "Saving result: " << doc.save_file("FSCM.xml") << std::endl;
+							populateForm();
+						}
+					}
+				}
 			 }
+
 		 }
 
 		 //form loading
@@ -314,14 +324,23 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 			 utils.initXML();
 
 			 dateSelect->Text = monthCalendar1->TodayDate.ToShortDateString();
+			 utils.selectedDate = utils.formToChar(dateSelect->Text);
+
+
 		 }
 
 private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 changeDataBtn->Enabled = true;
 		 }
 private: System::Void newEntryBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-			 DataForm^ df = gcnew DataForm();
-			 df->Visible = true;
+			 if(roomSelect->Text != ""){
+				DataForm^ df = gcnew DataForm();
+				df->Visible = true;
+			 }
+			 else
+			 {
+				 MessageBox::Show("Please select a valid classroom", "MessageBox Test", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+			 }
 		 }
 };
 }
