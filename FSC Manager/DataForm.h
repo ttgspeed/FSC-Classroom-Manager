@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Windows.h>
 #include <pugixml.hpp>
 #include <iostream>
 #include < stdio.h >
@@ -41,9 +42,14 @@ namespace FSCMAnager {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::ComboBox^  eTimeEndDel;
+	private: System::Windows::Forms::ComboBox^  etdel;
+	private: System::Windows::Forms::ComboBox^  btdel;
 	protected: 
-	private: System::Windows::Forms::ComboBox^  eTimeStartDel;
+
+	protected: 
+
+	protected: 
+
 	private: System::Windows::Forms::TextBox^  eNotes;
 
 	private: System::Windows::Forms::Label^  label7;
@@ -51,8 +57,8 @@ namespace FSCMAnager {
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::TextBox^  eTimeEnd;
-	private: System::Windows::Forms::TextBox^  eTimeStart;
+
+
 	private: System::Windows::Forms::TextBox^  eTeacher;
 	private: System::Windows::Forms::TextBox^  eClass;
 	private: System::Windows::Forms::Button^  button1;
@@ -60,6 +66,10 @@ namespace FSCMAnager {
 	private: System::Windows::Forms::TextBox^  eClassroom;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  eDate;
+	private: System::Windows::Forms::ComboBox^  bthr;
+	private: System::Windows::Forms::ComboBox^  btmin;
+	private: System::Windows::Forms::ComboBox^  etmin;
+	private: System::Windows::Forms::ComboBox^  ethr;
 
 	private:
 		/// <summary>
@@ -74,16 +84,14 @@ namespace FSCMAnager {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->eTimeEndDel = (gcnew System::Windows::Forms::ComboBox());
-			this->eTimeStartDel = (gcnew System::Windows::Forms::ComboBox());
+			this->etdel = (gcnew System::Windows::Forms::ComboBox());
+			this->btdel = (gcnew System::Windows::Forms::ComboBox());
 			this->eNotes = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->eTimeEnd = (gcnew System::Windows::Forms::TextBox());
-			this->eTimeStart = (gcnew System::Windows::Forms::TextBox());
 			this->eTeacher = (gcnew System::Windows::Forms::TextBox());
 			this->eClass = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -91,25 +99,31 @@ namespace FSCMAnager {
 			this->eClassroom = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->eDate = (gcnew System::Windows::Forms::TextBox());
+			this->bthr = (gcnew System::Windows::Forms::ComboBox());
+			this->btmin = (gcnew System::Windows::Forms::ComboBox());
+			this->etmin = (gcnew System::Windows::Forms::ComboBox());
+			this->ethr = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
-			// eTimeEndDel
+			// etdel
 			// 
-			this->eTimeEndDel->FormattingEnabled = true;
-			this->eTimeEndDel->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"AM", L"PM"});
-			this->eTimeEndDel->Location = System::Drawing::Point(233, 136);
-			this->eTimeEndDel->Name = L"eTimeEndDel";
-			this->eTimeEndDel->Size = System::Drawing::Size(68, 21);
-			this->eTimeEndDel->TabIndex = 23;
+			this->etdel->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->etdel->FormattingEnabled = true;
+			this->etdel->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"AM", L"PM"});
+			this->etdel->Location = System::Drawing::Point(233, 136);
+			this->etdel->Name = L"etdel";
+			this->etdel->Size = System::Drawing::Size(68, 21);
+			this->etdel->TabIndex = 23;
 			// 
-			// eTimeStartDel
+			// btdel
 			// 
-			this->eTimeStartDel->FormattingEnabled = true;
-			this->eTimeStartDel->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"AM", L"PM"});
-			this->eTimeStartDel->Location = System::Drawing::Point(233, 109);
-			this->eTimeStartDel->Name = L"eTimeStartDel";
-			this->eTimeStartDel->Size = System::Drawing::Size(68, 21);
-			this->eTimeStartDel->TabIndex = 22;
+			this->btdel->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->btdel->FormattingEnabled = true;
+			this->btdel->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"AM", L"PM"});
+			this->btdel->Location = System::Drawing::Point(233, 109);
+			this->btdel->Name = L"btdel";
+			this->btdel->Size = System::Drawing::Size(68, 21);
+			this->btdel->TabIndex = 22;
 			// 
 			// eNotes
 			// 
@@ -163,20 +177,6 @@ namespace FSCMAnager {
 			this->label3->Size = System::Drawing::Size(74, 13);
 			this->label3->TabIndex = 16;
 			this->label3->Text = L"CLASS CODE";
-			// 
-			// eTimeEnd
-			// 
-			this->eTimeEnd->Location = System::Drawing::Point(89, 137);
-			this->eTimeEnd->Name = L"eTimeEnd";
-			this->eTimeEnd->Size = System::Drawing::Size(137, 20);
-			this->eTimeEnd->TabIndex = 15;
-			// 
-			// eTimeStart
-			// 
-			this->eTimeStart->Location = System::Drawing::Point(89, 110);
-			this->eTimeStart->Name = L"eTimeStart";
-			this->eTimeStart->Size = System::Drawing::Size(137, 20);
-			this->eTimeStart->TabIndex = 14;
 			// 
 			// eTeacher
 			// 
@@ -236,26 +236,72 @@ namespace FSCMAnager {
 			this->eDate->Size = System::Drawing::Size(212, 20);
 			this->eDate->TabIndex = 27;
 			// 
+			// bthr
+			// 
+			this->bthr->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->bthr->FormattingEnabled = true;
+			this->bthr->Items->AddRange(gcnew cli::array< System::Object^  >(12) {L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8", L"9", 
+				L"10", L"11", L"12"});
+			this->bthr->Location = System::Drawing::Point(89, 109);
+			this->bthr->Name = L"bthr";
+			this->bthr->Size = System::Drawing::Size(60, 21);
+			this->bthr->TabIndex = 29;
+			// 
+			// btmin
+			// 
+			this->btmin->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->btmin->FormattingEnabled = true;
+			this->btmin->Items->AddRange(gcnew cli::array< System::Object^  >(12) {L"00", L"05", L"10", L"15", L"20", L"25", L"30", L"35", 
+				L"40", L"45", L"50", L"55"});
+			this->btmin->Location = System::Drawing::Point(155, 109);
+			this->btmin->Name = L"btmin";
+			this->btmin->Size = System::Drawing::Size(72, 21);
+			this->btmin->TabIndex = 30;
+			// 
+			// etmin
+			// 
+			this->etmin->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->etmin->FormattingEnabled = true;
+			this->etmin->Items->AddRange(gcnew cli::array< System::Object^  >(12) {L"00", L"05", L"10", L"15", L"20", L"25", L"30", L"35", 
+				L"40", L"45", L"50", L"55"});
+			this->etmin->Location = System::Drawing::Point(155, 136);
+			this->etmin->Name = L"etmin";
+			this->etmin->Size = System::Drawing::Size(72, 21);
+			this->etmin->TabIndex = 32;
+			// 
+			// ethr
+			// 
+			this->ethr->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->ethr->FormattingEnabled = true;
+			this->ethr->Items->AddRange(gcnew cli::array< System::Object^  >(12) {L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8", L"9", 
+				L"10", L"11", L"12"});
+			this->ethr->Location = System::Drawing::Point(89, 136);
+			this->ethr->Name = L"ethr";
+			this->ethr->Size = System::Drawing::Size(60, 21);
+			this->ethr->TabIndex = 31;
+			// 
 			// DataForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(313, 332);
+			this->Controls->Add(this->etmin);
+			this->Controls->Add(this->ethr);
+			this->Controls->Add(this->btmin);
+			this->Controls->Add(this->bthr);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->eDate);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->eClassroom);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->eTimeEndDel);
-			this->Controls->Add(this->eTimeStartDel);
+			this->Controls->Add(this->etdel);
+			this->Controls->Add(this->btdel);
 			this->Controls->Add(this->eNotes);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->eTimeEnd);
-			this->Controls->Add(this->eTimeStart);
 			this->Controls->Add(this->eTeacher);
 			this->Controls->Add(this->eClass);
 			this->Name = L"DataForm";
@@ -268,28 +314,58 @@ namespace FSCMAnager {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
-		utilities utils;
+		if(!timeConflict())
+		{
+			utilities utils;
 
-		pugi::xml_document doc;
+			pugi::xml_document doc;
 
-		if (doc.load_file("FSCM.xml")){
-			pugi::xml_node ch = doc.child("FSCM").child("Classrooms").child("classroom");
+			if (doc.load_file("FSCM.xml")){
+				pugi::xml_node ch = doc.child("FSCM").child("Classrooms").child("classroom");
 
-			pugi::xml_node cl = ch.append_child("class");
+				pugi::xml_node cl = ch.append_child("class");
 			
-			cl.append_attribute("classroom") = utils.formToChar(eClassroom->Text);
-			cl.append_attribute("date") = utils.formToChar(eDate->Text);
-			cl.append_attribute("displayname") = utils.formToChar(eClass->Text+" "+eTimeStart->Text+"-"+eTimeEnd->Text);
+				cl.append_attribute("classroom") = utils.formToChar(eClassroom->Text);
+				cl.append_attribute("date") = utils.formToChar(eDate->Text);
+				cl.append_attribute("displayname") = utils.formToChar(eClass->Text+" "+bthr->Text+":"+btmin->Text+btdel->Text+"-"+ethr->Text+":"+etmin->Text+etdel->Text);
 
-			cl.append_child("classcode").text().set(utils.formToChar(eClass->Text));
-			cl.append_child("teacher").text().set(utils.formToChar(eTeacher->Text));
-			cl.append_child("begintime").text().set(utils.formToChar(eTimeStart->Text));
-			cl.append_child("endtime").text().set(utils.formToChar(eTimeEnd->Text));
-			cl.append_child("notes").text().set(utils.formToChar(eNotes->Text));
+				cl.append_child("classcode").text().set(utils.formToChar(eClass->Text));
+				cl.append_child("teacher").text().set(utils.formToChar(eTeacher->Text));
+				cl.append_child("bthr").text().set(utils.formToChar(bthr->Text));
+				cl.append_child("btmin").text().set(utils.formToChar(btmin->Text));
+				cl.append_child("btdel").text().set(utils.formToChar(btdel->Text));
+				cl.append_child("ethr").text().set(utils.formToChar(ethr->Text));
+				cl.append_child("etmin").text().set(utils.formToChar(etmin->Text));
+				cl.append_child("etdel").text().set(utils.formToChar(etdel->Text));
+				cl.append_child("notes").text().set(utils.formToChar(eNotes->Text));
 
-			std::cout << "Saving result: " << doc.save_file("FSCM.xml") << std::endl;
+				std::cout << "Saving result: " << doc.save_file("FSCM.xml") << std::endl;
+
+				this->Close();
+			}
 		}
 	}
+
+	private: bool timeConflict()
+			 {
+				pugi::xml_document doc;
+
+				if (doc.load_file("FSCM.xml")){
+					pugi::xml_node ch = doc.child("FSCM").child("Classrooms").child("classroom");
+
+					for (pugi::xml_node cl = ch.first_child(); cl; cl = cl.next_sibling())
+					{
+						String^ clrn = gcnew String(cl.attribute("classroom").value());
+						String^ cldt = gcnew String(cl.attribute("date").value());
+
+						if((clrn == eClassroom->Text) && (cldt == eDate->Text)){
+							if(MessageBox::Show("The selected classroom already has a class scheduled for this date, which could possibly cause a conflict. Do you want to add this class anyways?", "Warning", MessageBoxButtons::YesNo,MessageBoxIcon::Exclamation) == ::System::Windows::Forms::DialogResult::No)
+								return true;
+						}
+					}
+				}
+				return false;
+			 }
 
 private: System::Void DataForm_Load(System::Object^  sender, System::EventArgs^  e) {
 			 utilities utils;

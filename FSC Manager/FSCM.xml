@@ -3,18 +3,48 @@
 	<param name="version" type="float" value="1.1" />
 	<Classrooms>
 		<classroom>
-			<class classroom="PS110" date="11/13/2014" displayname="CSC3645 2:30-3:30">
-				<classcode>CSC3645</classcode>
-				<teacher>MARTINEZ</teacher>
-				<begintime>2:30</begintime>
-				<endtime>3:30</endtime>
+			<class classroom="PS110" date="11/29/2014" displayname="CSC2300 10:50-11:45">
+				<classcode>CSC2300</classcode>
+				<teacher>Mathias</teacher>
+				<bthr>10</bthr>
+				<btmin>50</btmin>
+				<btdel>AM</btdel>
+				<ethr>11</ethr>
+				<etmin>45</etmin>
+				<etdel>AM</etdel>
 				<notes />
 			</class>
-			<class classroom="PS111" date="11/12/2014" displayname="MAT4499 1:00-1:15">
-				<classcode>MAT4499</classcode>
-				<teacher>MATHIAS</teacher>
-				<begintime>1:00</begintime>
-				<endtime>1:15</endtime>
+			<class classroom="PS110" date="12/3/2014" displayname="CSC9999 6:40AM-7:50AM">
+				<classcode>CSC9999</classcode>
+				<teacher>Mathias</teacher>
+				<bthr>6</bthr>
+				<btmin>40</btmin>
+				<btdel>AM</btdel>
+				<ethr>7</ethr>
+				<etmin>50</etmin>
+				<etdel>AM</etdel>
+				<notes />
+			</class>
+			<class classroom="PS110" date="12/4/2014" displayname="CSC9300 7:30AM-8:40AM">
+				<classcode>CSC9300</classcode>
+				<teacher>Mathias</teacher>
+				<bthr>7</bthr>
+				<btmin>30</btmin>
+				<btdel>AM</btdel>
+				<ethr>8</ethr>
+				<etmin>40</etmin>
+				<etdel>AM</etdel>
+				<notes />
+			</class>
+			<class classroom="PS110" date="12/4/2014" displayname="CSC9700 8:50AM-7:10PM">
+				<classcode>CSC9700</classcode>
+				<teacher>Mathias</teacher>
+				<bthr>8</bthr>
+				<btmin>50</btmin>
+				<btdel>AM</btdel>
+				<ethr>7</ethr>
+				<etmin>10</etmin>
+				<etdel>PM</etdel>
 				<notes />
 			</class>
 		</classroom>
